@@ -1,0 +1,65 @@
+version: "2"
+services:
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - dev-env-redis-volume:/data
+  hmrc-postgres:
+    container_name: postgres
+    image: postgres:10
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=
+      - LANG=C.UTF-8
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
+    volumes:
+      - hmrc-postgres:/var/lib/postgresql/data
+  hmrc-elasticsearch:
+    container_name: hmrc-elasticsearch
+    image: elasticsearch:7.9.3
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+        - bootstrap.memory_lock=true
+        - discovery.type=single-node
+        - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+        - cluster.routing.allocation.disk.threshold_enabled=false
+    ulimits:
+        memlock:
+            soft: -1
+            hard: -1
+    healthcheck:
+      interval: 20s
+      retries: 10
+      test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
+    volumes:
+    - hmrc-es:/usr/share/elasticsearch/data
+  # hmrc-kibana:
+  #   container_name: hmrc-kibana
+  #   image: kibana:7.9.3
+  #   ports:
+  #     - 5601:5601
+  #   environment:
+  #     ELASTICSEARCH_URL: https://prod-lon-f7f9d603-d3ae-4eb5-be0c-1ac4e7a23103-paas-cf-prod.aivencloud.com:19676
+  #     ELASTICSEARCH_HOSTS: https://prod-lon-f7f9d603-d3ae-4eb5-be0c-1ac4e7a23103-paas-cf-prod.aivencloud.com:19676
+  #     ELASTICSEARCH_USERNAME: 384689a1-8a42-4e95-b028-9403ac7b320b
+  #     ELASTICSEARCH_PASSWORD: xy4st802kmvq80co
+
+volumes:
+  dev-env-mariadb:
+    driver: local
+  dev-env-redis-volume:
+    driver: local
+  postgres:
+    driver: local
+  hmrc-postgres:
+    driver: local
+  hmrc-es:
+    driver: local

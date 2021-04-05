@@ -1,0 +1,15 @@
+window:
+  decorations: none
+background_opacity: 0.98
+
+font:
+  size: 12
+  normal:
+    family: Hack
+    style: Regular
+  bold:
+    family: Hack
+    style: Bold
+  italic:
+    family: Hack
+    style: Italic
