@@ -3,6 +3,10 @@ function cf
     clear_apps
     clear_services
     /home/william/.asdf/shims/cf $argv
+  else if test "$argv[1]" = "login"
+    clear_apps
+    clear_services
+    /home/william/.asdf/shims/cf $argv
   else
     /home/william/.asdf/shims/cf $argv
   end

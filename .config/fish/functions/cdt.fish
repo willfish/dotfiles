@@ -1,4 +1,4 @@
 # Defined in - @ line 1
 function cdt
-	cdr; cd pomegranate; cd terraform-config
+	cdr; cd hmrc; cd trade-tariff-testing
 end
