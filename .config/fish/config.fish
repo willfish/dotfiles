@@ -90,52 +90,41 @@ end
 
 alias update-nvim-nightly='asdf uninstall neovim ref:master; asdf install neovim ref:master'
 
-function today -d "Open today's notes"
-  set -l todays_date (date +%F)
-  set -l notes_directory "$HOME/Notes/$todays_date"
-  set -l note_file "$notes_directory/today.md"
-  set -l template_file "$HOME/Notes/templates/today.md"
+function notes_on -d "Retrieve a given day's notes"
+  set -l on_date $argv[1]
+  set -l notes_file $argv[2]
+  set -l notes_directory "$HOME/Notes/$on_date"
+  set -l fully_qualified_notes_file "$notes_directory/$notes_file"
+  set -l template_file "$HOME/Notes/templates/$notes_file"
 
   install_notes
 
-  if not test -e $note_file
+  if not test -e $fully_qualified_notes_file
     mkdir -p $notes_directory
-    cp $template_file $note_file
+    cp $template_file $fully_qualified_notes_file
 
     if [ (uname) = "Darwin" ]
-      sed -i '' "s/TodaysDate/$todays_date/" $note_file
+      sed -i '' "s/TodaysDate/$on_date/" $fully_qualified_notes_file
     else
-      sed -i "s/TodaysDate/$todays_date/" $note_file
+      sed -i "s/TodaysDate/$on_date/" $fully_qualified_notes_file
     end
   end
 
   pushd $notes_directory
-  vim $note_file
+  vim $fully_qualified_notes_file
   popd
 end
 
-function standup -d "Open today's standup notes"
-  set -l todays_date (date +%F)
-  set -l notes_directory "$HOME/Notes/$todays_date"
-  set -l note_file "$notes_directory/standup.md"
-  set -l template_file "$HOME/Notes/templates/standup.md"
+function tomorrow -d "Open tomorrow's notes"
+  notes_on (date +%F -d "tomorrow") today.md
+end
 
-  install_notes
+function today -d "Open today's notes"
+  notes_on (date +%F) today.md
+end
 
-  if not test -e $note_file
-    mkdir -p $notes_directory
-    cp $template_file $note_file
-
-    if [ (uname) = "Darwin" ]
-      sed -i '' "s/TodaysDate/$todays_date/" $note_file
-    else
-      sed -i "s/TodaysDate/$todays_date/" $note_file
-    end
-  end
-
-  pushd $notes_directory
-  vim $note_file
-  popd
+function yesterday -d "Open yesterday's notes"
+  notes_on (date +%F -d "yesterday") today.md
 end
 
 source ~/.asdf/asdf.fish
@@ -316,4 +305,11 @@ function clear_conduit
       cf delete $app
     end
   end
+end
+
+function flask_up -d 'Loads a flask environment and app'
+  source venv/bin/activate.fish
+  source .env.development
+  flask run
+  deactivate
 end
