@@ -1,3 +1,40 @@
+abbr --add cdf '~/Repositories/fun'
+abbr --add cdn '~/Notes'
+abbr --add cdr '~/Repositories'
+abbr --add dtc 'find . -type d -name ".terragrunt-cache" -exec rm -rf "{}" \;'
+abbr --add gc 'git commit'
+abbr --add gcl 'git clone'
+abbr --add gcm 'git cm'
+abbr --add gco 'git checkout'
+abbr --add la 'exa --git --links --all --long'
+abbr --add ll 'exa -l --git --links'
+abbr --add mux 'tmuxinator'
+abbr --add ny '~/.config/nyxt'
+abbr --add rc 'bundle exec rails c'
+abbr --add rs 'bundle exec rails s'
+abbr --add t 'bundle exec rspec'
+abbr --add tg 'terragrunt'
+abbr --add v 'nvim'
+abbr --add vim 'nvim'
+abbr --add vimdiff 'nvim -d'
+
+abbr --add hm '~/Repositories/hmrc'
+abbr --add admin '~/Repositories/hmrc/trade-tariff-admin'
+abbr --add back '~/Repositories/hmrc/trade-tariff-backend'
+abbr --add front '~/Repositories/hmrc/trade-tariff-frontend'
+abbr --add cds '~/Repositories/hmrc/trade-tariff-search-query-parser'
+abbr --add docs '~/Repositories/hmrc/trade-tariff-api-docs'
+abbr --add duty '~/Repositories/hmrc/trade-tariff-duty-calculator'
+abbr --add cdt '~/Repositories/hmrc/trade-tariff-testing'
+abbr --add sign '/home/william/Repositories/hmrc/signon'
+abbr --add uktt '/home/william/Repositories/hmrc/uktt'
+
+abbr --add pom '~/Repositories/pomegranate'
+abbr --add api '~/Repositories/pomegranate/prognostic-engine-api'
+abbr --add cdp '~/Repositories/pomegranate/prognostic-engine'
+abbr --add cdtc '~/Repositories/pomegranate/terraform-config'
+abbr --add cdtm '~/Repositories/pomegranate/terraform-modules'
+
 function prepend_to_path
   if test -d $argv[1]
     if not contains $argv[1] $PATH
@@ -17,10 +54,12 @@ end
 prepend_to_path "$HOME/bin"
 prepend_to_path "$HOME/.local/bin"
 prepend_to_path "/usr/local/bin"
+prepend_to_path "/home/william/bin"
+prepend_to_path "~/.local/share/coursier/bin"
 
 set -gx ASDF_RUBY_BUILD_VERSION "master"
-set -gx EDITOR "/home/william/.asdf/shims/nvim"
-set -gx VISUAL "/home/william/.asdf/shims/nvim"
+set -gx EDITOR "nvim"
+set -gx VISUAL "nvim"
 set -gx ERL_AFLAGS "-kernel shell_history enabled"
 set -gx LESS "-R"
 set -gx GIT_PAGER "less"
@@ -28,20 +67,16 @@ set -gx fish_greeting ""
 set -gx SAM_CLI_TELEMETRY 0
 set -gx MANPAGER 'nvim +Man!'
 set -gx PKG_CONFIG_PATH /usr/lib/x86_64-linux-gnu/pkgconfig
-set -gx VK_ICD_FILENAMES /usr/share/vulkan/icd.d/nvidia_icd.json # https://vulkan.lunarg.com/issue/home?limit=10;q=;mine=false;org=false;khronos=false;lunarg=false;indie=false;status=new,open - debugging issue with loading vkcube
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 set -gx GIT_TERMINAL_PROMPT 1
-set -gx FLASK_APP flaskr
-set -gx FLASK_ENV development
 
 if [ (uname) = "Darwin" ]
 else
-  # Linux Brew
-  set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew";
+  # Linux Brew set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew";
   set -gx HOMEBREW_CELLAR "/home/linuxbrew/.linuxbrew/Cellar";
   set -gx HOMEBREW_REPOSITORY "/home/linuxbrew/.linuxbrew/Homebrew";
 
-  prepend_to_info "/home/linuxbrew/.linuxbrew/share/info" 
+  prepend_to_info "/home/linuxbrew/.linuxbrew/share/info"
   prepend_to_info "/usr/share/terminfo"
 
   set -gx fish_user_paths "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" $fish_user_paths;
@@ -51,22 +86,25 @@ end
 function hmrc_env
   clear_env
   set -gx AWS_PROFILE hmrc
-end
-
-function cf_psql
-  set -l service (services | grep postgres | fzf)
-
-  cf conduit $service -- psql
+  set -gx AWS_REGION eu-west-2
+  set -gx AWS_DEFAULT_REGION eu-west-2
+  set -gx REGION eu-west-2
 end
 
 function pomegranate_env
   clear_env
   set -gx AWS_PROFILE pomegranate
+  set -gx AWS_REGION eu-west-2
+  set -gx AWS_DEFAULT_REGION eu-west-2
+  set -gx REGION eu-west-2
 end
 
 function personal_env
   clear_env
   set -gx AWS_PROFILE personal
+  set -gx AWS_REGION eu-west-2
+  set -gx AWS_DEFAULT_REGION eu-west-2
+  set -gx REGION eu-west-2
 end
 
 function clear_env -d "Clears all AWS environment variables"
@@ -111,7 +149,7 @@ function notes_on -d "Retrieve a given day's notes"
   end
 
   pushd $notes_directory
-  vim $fully_qualified_notes_file
+  nvim $fully_qualified_notes_file
   popd
 end
 
@@ -168,16 +206,34 @@ function clear_services
   end
 end
 
+function cf_psql
+  set -l service (services | grep postgres | fzf)
+
+  cf conduit $service -- psql
+end
+
 function cf_ssh
   set -l app (apps | fzf)
 
-  cf ssh $app -t -c "export PATH='/bin/:/usr/local/bin:/usr/bin'; cd /app; /bin/sh"
+  echo $app | grep "signon"
+
+  if test $status -eq 0
+    cf ssh $app -t -c "export PATH='/usr/local/bundle/bin/bin:/usr/local/bundle/bin:/opt/bitnami/ruby/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'; cd /app; sh"
+  else
+    cf ssh $app -t -c "export PATH='/bin/:/usr/local/bin:/usr/bin'; cd /app; sh"
+  end
 end
 
 function cf_rb
   set -l app (apps | grep -e frontend -e backend -e admin -e duty -e signon | fzf)
 
-  cf ssh $app -t -c "export PATH='/bin/:/usr/local/bin:/usr/bin'; cd /app; /usr/local/bin/bundle exec rails c"
+  echo $app | grep "signon"
+
+  if test $status -eq 0
+    cf ssh $app -t -c "export PATH='/usr/local/bundle/bin/bin:/usr/local/bundle/bin:/opt/bitnami/ruby/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'; cd /app; bundle exec rails c"
+  else
+    cf ssh $app -t -c "export PATH='/bin/:/usr/local/bin:/usr/bin'; cd /app; bundle exec rails c"
+  end
 end
 
 function cf_flush
@@ -194,6 +250,14 @@ function cf_flush_all
   end
 end
 
+function cf_bundle_exec
+  set -l workers (apps | grep worker | grep -v signon)
+
+  for worker in $workers
+    cf ssh $worker -t -c "export PATH='/bin/:/usr/local/bin:/usr/bin'; cd /app; /usr/local/bin/bundle exec $argv"
+  end
+end
+
 function cf_info
   set -l service (services | grep redis | fzf)
 
@@ -207,7 +271,9 @@ function cf_psql
 end
 
 function backup_manifests
-  cdr; cd hmrc/manifests-backup
+  set -l current_directory (pwd)
+
+  cd /home/william/Repositories/hmrc/manifests-backup
 
   for space in (cat spaces)
     cf target -s $space
@@ -216,13 +282,21 @@ function backup_manifests
     pushd $space
 
     apps > apps
+    services > services
 
     for app in (cat apps)
       cf create-app-manifest $app
+      echo "App $app with guid $(cf app $app --guid)" >> guids.txt
+    end
+
+    for service in (cat services)
+      echo "Service $service with guid $(cf service $service --guid)" >> guids.txt
     end
 
     popd
   end
+
+  cd $current_directory
 end
 
 function cdn_invalidate_production
@@ -244,20 +318,26 @@ function show_stashes
 end
 
 function log_for
+  set -l previous (pwd)
   set -l url $argv[1]
   set -l repo $argv[2]
-  set -l sha1 (curl --silent $url | jq '.git_sha1' | tr -d '"') 
-  set -l repo_dir $HOME/Repositories/hmrc/$repo
+  set -l sha1 (curl --silent $url | jq '.git_sha1' | tr -d '"')
 
-  pushd $repo_dir
-  # git clean -df; git checkout -- .; git cm
-  echo $repo
+  cd ~/Repositories/hmrc
+  mkdir -p release-notes
+  cd release-notes
+  rm -rf $repo
+  git clone --quiet https://github.com/trade-tariff/$repo.git
+  cd $repo
+
+  echo "$repo"
   echo
-  echo $sha1
+  echo "$sha1"
   echo
-  git log --merges HEAD...$sha1 | grep -A 2 'Merge ' | grep -v '\-\-' | grep -v 'Merge' | awk '{$1=$1};1' | awk '!/^$/' | awk '{print "- "$0}' # | sed -r 's/^- (.*)([-|\s])([0-9]*)/- HOTT-\3:/'
+  git log --merges HEAD...$sha1 --format='format:- %b' | grep -v '* $'
   echo
-  popd
+
+  cd $previous
 end
 
 function frontend_log
@@ -308,8 +388,14 @@ function clear_conduit
 end
 
 function flask_up -d 'Loads a flask environment and app'
-  source venv/bin/activate.fish
+  set -gx FLASK_APP flaskr
+  set -gx FLASK_ENV development
+  source dev/bin/activate.fish
   source .env.development
   flask run
   deactivate
+  set -e FLASK_ENV
+  set -e FLASK_APP
 end
+
+source ~/.config/fish/secrets.fish
