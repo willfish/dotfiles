@@ -13,6 +13,7 @@ SETUVAR _fish_abbr_cds:\x7e/Repositories/hmrc/trade\x2dtariff\x2dsearch\x2dquery
 SETUVAR _fish_abbr_cdt:\x7e/Repositories/hmrc/trade\x2dtariff\x2dtesting
 SETUVAR _fish_abbr_cdtc:\x7e/Repositories/pomegranate/terraform\x2dconfig
 SETUVAR _fish_abbr_cdtm:\x7e/Repositories/pomegranate/terraform\x2dmodules
+SETUVAR _fish_abbr_cdv:\x7e/\x2econfig/nvim
 SETUVAR _fish_abbr_docs:\x7e/Repositories/hmrc/trade\x2dtariff\x2dapi\x2ddocs
 SETUVAR _fish_abbr_dtc:find\x20\x2e\x20\x2dtype\x20d\x20\x2dname\x20\x22\x2eterragrunt\x2dcache\x22\x20\x2dexec\x20rm\x20\x2drf\x20\x22\x7b\x7d\x22\x20\x5c\x3b
 SETUVAR _fish_abbr_duty:\x7e/Repositories/hmrc/trade\x2dtariff\x2dduty\x2dcalculator

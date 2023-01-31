@@ -1,6 +1,7 @@
 abbr --add cdf '~/Repositories/fun'
 abbr --add cdn '~/Notes'
 abbr --add cdr '~/Repositories'
+abbr --add cdv '~/.config/nvim'
 abbr --add dtc 'find . -type d -name ".terragrunt-cache" -exec rm -rf "{}" \;'
 abbr --add gc 'git commit'
 abbr --add gcl 'git clone'
@@ -69,6 +70,7 @@ set -gx MANPAGER 'nvim +Man!'
 set -gx PKG_CONFIG_PATH /usr/lib/x86_64-linux-gnu/pkgconfig
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 set -gx GIT_TERMINAL_PROMPT 1
+set -gx RUBYOPT "--enable-yjit"
 
 if [ (uname) = "Darwin" ]
 else
@@ -86,6 +88,30 @@ end
 function hmrc_env
   clear_env
   set -gx AWS_PROFILE hmrc
+  set -gx AWS_REGION eu-west-2
+  set -gx AWS_DEFAULT_REGION eu-west-2
+  set -gx REGION eu-west-2
+end
+
+function trade_tariff_ci_account_env
+  clear_env
+  set -gx AWS_PROFILE trade-tariff-ci-account
+  set -gx AWS_REGION eu-west-2
+  set -gx AWS_DEFAULT_REGION eu-west-2
+  set -gx REGION eu-west-2
+end
+
+function trade_tariff_bot_env
+  clear_env
+  set -gx AWS_PROFILE trade-tariff-bot
+  set -gx AWS_REGION eu-west-2
+  set -gx AWS_DEFAULT_REGION eu-west-2
+  set -gx REGION eu-west-2
+end
+
+function trade_tariff_dit_backups_accunt_env
+  clear_env
+  set -gx AWS_PROFILE trade-tariff-dit-backups-account
   set -gx AWS_REGION eu-west-2
   set -gx AWS_DEFAULT_REGION eu-west-2
   set -gx REGION eu-west-2
@@ -330,11 +356,12 @@ function log_for
   git clone --quiet https://github.com/trade-tariff/$repo.git
   cd $repo
 
-  echo "$repo"
+  echo "*$repo*"
   echo
-  echo "$sha1"
+  echo "_"$sha1"_"
   echo
-  git log --merges HEAD...$sha1 --format='format:- %b' | grep -v '* $'
+  git --no-pager log --merges HEAD...$sha1 --format="format:- %b" --grep 'Merge pull request'
+  echo
   echo
 
   cd $previous
