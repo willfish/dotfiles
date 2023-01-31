@@ -31,6 +31,7 @@ require("packer").startup(
         use "junegunn/vim-easy-align" -- Align stuff
         use "vim-test/vim-test" -- Run tests
         use "dense-analysis/ale" -- Asynchronous linter
+        use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'} -- Language aware folds
         use "stefandtw/quickfix-reflector.vim" -- Makes quickfix writeable - for example for a dynamic find and replace
 
         -- use {"neoclide/coc.nvim", branch = "release"} -- LSP client and convention over configuration configurator

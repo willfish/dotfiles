@@ -41,6 +41,25 @@ function M.create_augroups_and_aucmds()
             callback = function()
                 vim.schedule(
                     function()
+                        local os = require("os")
+                        local default_map_opts = {noremap = true, silent = true}
+
+                        if (os.execute("test -e .git/") == 0) then
+                            vim.api.nvim_set_keymap(
+                                "n",
+                                "<C-f>",
+                                ":lua require('telescope.builtin').git_files()<CR>",
+                                default_map_opts
+                            )
+                        else
+                            vim.api.nvim_set_keymap(
+                                "n",
+                                "<C-f>",
+                                ":lua require('telescope.builtin').find_files()<CR>",
+                                default_map_opts
+                            )
+                        end
+
                         vim.api.nvim_command("colorscheme oxocarbon")
                         -- TODO: Make active buffer non-transparent and inactive buffer transparent
                         vim.api.nvim_command("hi Normal guibg=NONE ctermbg=NONE")
