@@ -1,0 +1,3 @@
+temp_dirs
+lua/.luarc.json
+plugin/packer_compiled.lua
