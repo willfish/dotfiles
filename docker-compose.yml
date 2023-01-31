@@ -20,27 +20,45 @@ services:
       - 5432:5432
     volumes:
       - hmrc-postgres-10:/var/lib/postgresql/data
-  hmrc-elasticsearch:
-    container_name: hmrc-elasticsearch
-    image: elasticsearch:7.9.3
+  hmrc-mysql:
+    container_name: hmrc-mysql
+    image: mysql:8.0.30
+    environment:
+      - MYSQL_DATABASE=signonotron2_development
+      - MYSQL_USER=signonotron2
+      - MYSQL_PASSWORD=signonotron2
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
     ports:
-      - 9200:9200
-      - 9300:9300
+      - 3306:3306
+    volumes:
+      - hmrc-mysql-8:/var/lib/mysql
+  hmrc-opensearch:
+    container_name: hmrc-opensearch
+    image: opensearchproject/opensearch:2
+    ports:
+      - 127.0.0.1:9200:9200
+      - 127.0.0.1:9300:9300
     environment:
         - bootstrap.memory_lock=true
         - discovery.type=single-node
-        - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+        - "OPENSEARCH_JAVA_OPTS=-Xms2g -Xmx2g"
         - cluster.routing.allocation.disk.threshold_enabled=false
+        - plugins.security.disabled=true
     ulimits:
         memlock:
             soft: -1
             hard: -1
+        nofile:
+          soft: 65536
+          hard: 65536
     healthcheck:
-      interval: 20s
+      interval: 60s
       retries: 10
       test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
     volumes:
-    - hmrc-es:/usr/share/elasticsearch/data
+    - hmrc-es:/usr/share/opensearch/data
+    - /home/william/Repositories/hmrc/trade-tariff-backend/config/opensearch/synonyms_all.txt:/usr/share/opensearch/config/synonyms_all.txt
   # hmrc-kibana:
   #   container_name: hmrc-kibana
   #   image: kibana:7.9.3
@@ -56,6 +74,8 @@ volumes:
   hmrc-redis:
     driver: local
   hmrc-postgres-10:
+    driver: local
+  hmrc-mysql-8:
     driver: local
   hmrc-es:
     driver: local
