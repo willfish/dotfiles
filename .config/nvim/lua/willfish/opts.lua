@@ -12,7 +12,7 @@ vim.o.undodir = "/home/william/.config/nvim/temp_dirs/undodir"
 vim.o.inccommand = "split"
 vim.o.backup = false
 vim.o.hidden = true
-vim.o.lazyredraw = true
+vim.o.lazyredraw = false
 vim.o.showmatch = true
 vim.o.splitright = true
 vim.o.termguicolors = true
@@ -23,8 +23,8 @@ vim.o.shortmess = "filnxtToOFc"
 vim.o.completeopt = "menuone,noinsert,noselect"
 
 -- Mixture Window
-vim.o.colorcolumn = "120"
-vim.wo.colorcolumn = "120"
+vim.o.colorcolumn = "80,120"
+vim.wo.colorcolumn = "80,120"
 vim.o.scrolloff = 7
 vim.wo.scrolloff = 7
 vim.o.linebreak = true
@@ -51,3 +51,13 @@ vim.o.swapfile = false
 vim.bo.swapfile = false
 vim.o.undofile = true
 vim.bo.undofile = true
+
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
+-- vim.o.shortmess = "W"

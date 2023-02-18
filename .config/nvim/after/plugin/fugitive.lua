@@ -7,4 +7,3 @@ vim.api.nvim_set_keymap("n", "<Leader>s", ":Git<CR>", default_map_opts)
 vim.api.nvim_set_keymap("n", "<Leader>c", ":Git commit<CR>", default_map_opts)
 vim.api.nvim_set_keymap("n", "<Leader>]", ":Git push<CR>", default_map_opts)
 vim.api.nvim_set_keymap("n", "<Leader>[", ":Git pull<CR>", default_map_opts)
-

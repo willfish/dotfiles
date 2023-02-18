@@ -1,4 +1,4 @@
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
@@ -6,11 +6,15 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 local on_attach = function(client, bufnr)
+    if client.name == "tsserver" then
+        require('lsp-setup.utils').disable_formatting(client)
+    end
+
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- Mappings.
-    local bufopts = {noremap = true, silent = true, buffer = bufnr}
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -33,15 +37,25 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
     vim.keymap.set(
         "n",
-        "<space>f",
+        "<leader>a",
         function()
-            vim.lsp.buf.format {async = true}
+            vim.lsp.buf.format { async = true }
         end,
         bufopts
     )
 end
-require("neodev").setup()
 require("nvim-lsp-installer").setup {}
+require('neodev').setup({
+    lspconfig = {
+        settings = {
+            Lua = {
+                format = {
+                    enable = true,
+                }
+            }
+        }
+    }
+})
 
 require("lsp-setup").setup(
     {
@@ -49,8 +63,26 @@ require("lsp-setup").setup(
         capabilities = vim.lsp.protocol.make_client_capabilities(),
         servers = {
             ["bashls"] = {},
-            ["tsserver"] = {},
-            ["rust_analyzer@nightly"] = {},
+            ["rust_analyzer@nightly"] = {
+                settings = {
+                    ["rust-analyzer"] = {
+                        imports = {
+                            granularity = {
+                                group = "module"
+                            },
+                            prefix = "self"
+                        },
+                        cargo = {
+                            buildScripts = {
+                                enable = true
+                            }
+                        },
+                        procMacro = {
+                            enable = true
+                        }
+                    }
+                }
+            },
             ["pyright"] = {},
             ["gopls"] = {},
             ["solargraph"] = {},
@@ -60,13 +92,16 @@ require("lsp-setup").setup(
                 settings = {
                     json = {
                         schemas = require("schemastore").json.schemas(),
-                        validate = {enable = true}
+                        validate = { enable = true }
                     }
                 }
             },
             ["yamlls"] = {
                 settings = {
                     yaml = {
+                        format = {
+                            enable = true
+                        },
                         schemaStore = {
                             url = "https://www.schemastore.org/api/json/catalog.json",
                             enable = true
@@ -74,15 +109,28 @@ require("lsp-setup").setup(
                     }
                 }
             },
-            ["sumneko_lua"] = {
+            ["lua_ls"] = {},
+            ["tsserver"] = {
                 settings = {
-                    Lua = {
+                    ["typescript"] = {
+                        format = {
+                            enable = false
+                        }
+                    }
+                }
+            },
+            ["cssls"] = {},
+            ["vimls"] = {},
+            ["dockerls"] = {},
+            ["sqlls"] = {
+                settings = {
+                    sql = {
                         format = {
                             enable = true
                         }
                     }
                 }
-            }
+            },
         }
     }
 )

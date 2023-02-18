@@ -9,7 +9,7 @@ cmp.setup(
         },
         window = {},
         formatting = {
-            fields = {"menu", "abbr", "kind"},
+            fields = { "menu", "abbr", "kind" },
             format = function(entry, item)
                 local menu_icon = {
                     nvim_lsp = "λ",
@@ -24,17 +24,17 @@ cmp.setup(
         },
         mapping = cmp.mapping.preset.insert(
             {
-                ["<C-l>"] = cmp.mapping.confirm({select = true})
+                ["<C-l>"] = cmp.mapping.confirm({ select = true })
             }
         ),
         sources = cmp.config.sources(
             {
-                {name = "nvim_lsp"},
-                {name = "luasnip"},
-                {name = "path"}
+                { name = "nvim_lsp" },
+                { name = "luasnip" },
+                { name = "path" }
             },
             {
-                {name = "buffer"}
+                { name = "buffer" }
             }
         )
     }
@@ -48,10 +48,10 @@ cmp.setup.filetype(
     {
         sources = cmp.config.sources(
             {
-                {name = "cmp_git"}
+                { name = "cmp_git" }
             },
             {
-                {name = "buffer"}
+                { name = "buffer" }
             }
         )
     }
@@ -64,10 +64,10 @@ cmp.setup.cmdline(
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
             {
-                {name = "path"}
+                { name = "path" }
             },
             {
-                {name = "cmdline"}
+                { name = "cmdline" }
             }
         )
     }

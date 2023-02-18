@@ -23,21 +23,32 @@ require("telescope").setup {
         }
     }
 }
+
 require("telescope").load_extension("gh")
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("live_grep_args")
+require("telescope").load_extension("noice")
+
+local rg_args = "{find_command = {'rg', '--files', '--hidden', '--follow', '--glob', '!.git', '--glob', '!.svn', '--glob', '!.hg', '--glob', '!.bzr', '--glob', '!.tmp', '--glob', '!.DS_Store', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.git', '--glob', '!temp_dirs'}}"
 
 vim.api.nvim_set_keymap(
     "n",
     "<C-f>",
-    ":lua require('telescope.builtin').git_files()<CR>",
+    ":lua require('telescope.builtin').find_files(" .. rg_args .. ")<CR>",
     default_map_opts
 )
 
 vim.api.nvim_set_keymap(
     "n",
     "<C-g>",
-    ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+    ":lua require('telescope').extensions.live_grep_args.live_grep_args(" .. rg_args .. ")<CR>",
+    default_map_opts
+)
+
+vim.api.nvim_set_keymap(
+    "n",
+    "<C-b>",
+    ":lua require('telescope.builtin').buffers({sort_lastused = true})<CR>",
     default_map_opts
 )
 
@@ -50,8 +61,10 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
     "n",
-    "<C-t>",
-    ":Telescope<CR>",
+    "<Leader>fn",
+    ":lua require('telescope').extensions.noice.noice()<CR>",
     default_map_opts
-
 )
+
+
+vim.api.nvim_set_keymap("n", "<C-t>", ":Telescope<CR>", default_map_opts)

@@ -9,8 +9,7 @@ if not packer_exists then
 
     vim.fn.mkdir(directory, "p")
 
-    local out =
-        vim.fn.system(
+    vim.fn.system(
         string.format("git clone %s %s", "https://github.com/wbthomason/packer.nvim", directory .. "/packer.nvim")
     )
 
@@ -21,8 +20,7 @@ end
 
 require("packer").startup(
     function(use)
-        use {"shaunsingh/oxocarbon.nvim", run = "./install.sh"}
-        use "folke/tokyonight.nvim" -- Theme with treesitter compatibility
+        use "folke/tokyonight.nvim"
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"} -- Symbolic syntax highlighting
         use "sheerun/vim-polyglot" -- Language syntax highlighting on steroids
         use "mboughaba/i3config.vim" -- i3 config syntax highlighting
@@ -30,8 +28,7 @@ require("packer").startup(
 
         use "junegunn/vim-easy-align" -- Align stuff
         use "vim-test/vim-test" -- Run tests
-        use "dense-analysis/ale" -- Asynchronous linter
-        use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'} -- Language aware folds
+        -- use "dense-analysis/ale" -- Asynchronous linter
         use "stefandtw/quickfix-reflector.vim" -- Makes quickfix writeable - for example for a dynamic find and replace
 
         -- use {"neoclide/coc.nvim", branch = "release"} -- LSP client and convention over configuration configurator
@@ -42,7 +39,6 @@ require("packer").startup(
         use "nvim-telescope/telescope-live-grep-args.nvim" -- Filterable live grep
         use "nvim-lua/popup.nvim" -- Handy popup api written in lua
         use "nvim-lua/plenary.nvim" -- Brings in convenience functions for common lua behaviour
-        use "preservim/nerdtree" -- File/folder editor/viewer
         use {
             "nvim-tree/nvim-tree.lua",
             requires = {
@@ -66,13 +62,13 @@ require("packer").startup(
         use {"AckslD/nvim-revJ.lua", requires = {"sgur/vim-textobj-parameter"}} -- Reverse join
         use "nvim-treesitter/playground" -- Visual representation of treesitter symbols
         use "RRethy/nvim-treesitter-endwise" -- tpope endwise replacement that works with scheme treesitter definitions for wayyyy more languages
+        use "andymass/vim-matchup"
+        use({"kylechui/nvim-surround", tag = "*"})
 
         use "tpope/vim-dispatch" -- Asynchronous arbitrary shell execution
         use "tpope/vim-fugitive" -- Git integrations
-        use "tpope/vim-repeat" -- Support for repeating vim-surround motions
         use "tpope/vim-rhubarb" -- Open browser with git object under cursor - context aware
         use "tpope/vim-unimpaired" -- Navigate quickfix with ]q (next) [q (previous) entry shortcut
-        use "tpope/vim-surround" -- Change, add and delete surrounding characters around a target object
         use "tpope/vim-rails" -- Rails support
 
         use "kevinhwang91/nvim-bqf" -- Enhanced quickfix - especially filtering
@@ -107,5 +103,22 @@ require("packer").startup(
             }
         }
         use({"scalameta/nvim-metals", requires = {"nvim-lua/plenary.nvim"}})
+        use(
+            {
+                "folke/noice.nvim",
+                requires = {
+                    "MunifTanjim/nui.nvim",
+                    "rcarriga/nvim-notify"
+                }
+            }
+        )
+        use {
+            "nvim-lualine/lualine.nvim",
+            requires = {"kyazdani42/nvim-web-devicons", opt = true}
+        }
+
+        use "github/copilot.vim"
+        use "jose-elias-alvarez/null-ls.nvim"
+        use "folke/neodev.nvim"
     end
 )
