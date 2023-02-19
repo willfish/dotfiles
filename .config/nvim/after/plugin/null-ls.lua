@@ -7,8 +7,8 @@ null_ls.setup({
 
         -- filter down to only the keymap we're interested in
         norm_maps = vim.tbl_filter(function(v)
-                return v.lhs == "<leader>a"
-            end, norm_maps)
+            return v.lhs == "<leader>a"
+        end, norm_maps)
 
         if #norm_maps == 0 then
             vim.keymap.set(
@@ -31,6 +31,7 @@ null_ls.setup({
         null_ls.builtins.formatting.autoflake,
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.erb_lint,
+        null_ls.builtins.formatting.xmllint,
         null_ls.builtins.formatting.eslint,
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.markdownlint,
