@@ -46,7 +46,7 @@ exec --no-startup-id pa-applet
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
-bindsym $mod+x exec --no-startup-id "rofi -show combi -combi-modes 'window,run,ssh' -modes combi -theme gruvbox-dark"
+bindsym $mod+x exec --no-startup-id "rofi -show combi -combi-modes 'run,ssh' -show-icons -display-run '' -modes combi -theme macos"
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -110,12 +110,12 @@ bindsym $mod+a workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1:🌍
-set $ws2 2:💬
-set $ws3 3:✏
-set $ws4 4:👂
-set $ws5 5:🔍
-set $ws6 6:🗓
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
 set $ws7 7
 set $ws8 8
 
@@ -167,32 +167,32 @@ assign [class="gnome-calendar"] $ws6
 
 
 # Open specific applications in floating mode
-for_window [title=".*"] border pixel 4
+for_window [title=".*"] border border none
 for_window [title="alsamixer"] floating enable border pixel 4
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [class="TTBS"] floating enable
-for_window [class="zoom "] floating enable
-for_window [class="zoom"] floating enable
-for_window [title="File Transfer*"] floating enable
+for_window [class="zoom "] floating enable border none
+for_window [class="zoom"] floating enable border none
+for_window [title="File Transfer*"] floating enable border none
 for_window [class="fpakman"] floating enable
 for_window [class="Galculator"] floating enable border pixel 4
 for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [class="Manjaro-hello"] floating enable border none
+for_window [class="Manjaro Settings Manager"] floating enable border none
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 for_window [title="About Pale Moon"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
+for_window [class="Pamac-manager"] floating enable border none
+for_window [class="Pavucontrol"] floating enable border none
+for_window [class="qt5ct"] floating enable sticky enable border none
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border none
+for_window [class="Simple-scan"] floating enable border none
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
@@ -236,10 +236,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -258,19 +258,14 @@ bindsym $mod+9 exec --no-startup-id blurlock
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id variety --profile ~/.config/variety
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
-#exec --no-startup-id manjaro-helo
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
-# exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -303,55 +298,6 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-# bar {
-# 	font pango:Source Sans Pro-10 10
-# 	position top
-# 	status_command i3blocks -c ~/.i3/i3blocks.conf
-#   colors {
-#     separator #268bd2
-#     background #002b36
-#     statusline #839496
-#     focused_workspace #fdf6e3 #6c71c4 #fdf6e3
-#     active_workspace #fdf6e3 #6c71c4 #fdf6e3
-#     inactive_workspace #002b36 #586e75 #002b36
-#     urgent_workspace #d33682 #d33682 #fdf6e3
-#   }
-# }
-# client.focused #6c71c4 #6c71c4 #fdf6e3 #6c71c4
-# client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
-# client.unfocused #073642 #073642 #93a1a1 #586e75
-# client.urgent #d33682 #d33682 #fdf6e3 #dc322f
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-	i3bar_command i3bar
-	status_command i3status
-	position top
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
-
-    colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
-
-        #                   border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
-}
-
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
@@ -368,25 +314,28 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 40
-gaps outer -5
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
+gaps outer 10
+gaps inner 30
+# Handle polybar top gap
+gaps top 40
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps off
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-# smart_borders on
-
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-
 # Monitor management
+bindsym $mod+m mode "$mode_monitor"
+set $mode_monitor (l)aptop (e)xternal (b)oth
+mode "$mode_system" {
+    bindsym l exec --no-startup-id bin/monitor.sh laptop
+    bindsym e exec --no-startup-id bin/monitor.sh external
+    bindsym b exec --no-startup-id bin/monitor.sh both
 
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Sets mod+m mapping to trigger xrandr commands
+# bindsym $mod+m mode "xrandr --output eDP-1 --auto --primary --rotate normal --output eDP-1 --preferred --rotate normal --below DP-2"
 # xrandr --output eDP-1 --auto --primary --rotate normal --output eDP-1 --preferred --rotate normal --below DP-2
 # xrandr --output eDP-1 --off
 # xrandr --output DP-2 --auto
