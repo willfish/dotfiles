@@ -8,15 +8,15 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 4
-default_floating_border pixel 4
+default_border pixel 2
+default_floating_border pixel 2
 
 # Hide borders
 # hide_edge_borders none
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 4
+bindsym $mod+y border pixel 2
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -167,8 +167,8 @@ assign [class="gnome-calendar"] $ws6
 
 
 # Open specific applications in floating mode
-for_window [title=".*"] border border none
-for_window [title="alsamixer"] floating enable border pixel 4
+for_window [title=".*"] border border pixel 2
+for_window [title="alsamixer"] floating enable border pixel 2
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [class="TTBS"] floating enable
@@ -176,7 +176,7 @@ for_window [class="zoom "] floating enable border none
 for_window [class="zoom"] floating enable border none
 for_window [title="File Transfer*"] floating enable border none
 for_window [class="fpakman"] floating enable
-for_window [class="Galculator"] floating enable border pixel 4
+for_window [class="Galculator"] floating enable border pixel 2
 for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
@@ -299,15 +299,14 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 
-# Theme colors
-# class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000
+# Tokyo Night theme
+client.focused #80FFF9 #80FFF9 #FDF6E3 #80FFF9
+client.focused_inactive #1ABC9C #1ABC9C #454948 #1ABC9C
+client.unfocused #1ABC9C #1ABC9C #454948 #1ABC9C
+client.urgent #1ABC9C #1ABC9C #268BD2 #CB4B16
+client.placeholder #ffffff #0c0c0c #ffffff #000000
 
-  client.background       #2B2C2B
+client.background #2B2C2B
 
 #############################
 ### settings for i3-gaps: ###
