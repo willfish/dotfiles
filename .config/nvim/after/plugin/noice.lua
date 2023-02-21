@@ -1,5 +1,5 @@
 require("noice").setup {
-    messages = {
+   messages = {
         enabled = true,
     },
     views = {

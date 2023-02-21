@@ -45,6 +45,7 @@ require("packer").startup(
         "folke/neodev.nvim"
       }
     } -- Autocompletion
+    use "sheerun/vim-polyglot" -- Syntax highlighting with polyglot
     use "github/copilot.vim" -- AI sources for autocompletion (uses tab for completion as these are special)
     use { "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } } -- Insanely fast statusline
     use "folke/tokyonight.nvim"
@@ -88,11 +89,11 @@ require("packer").startup(
     use "idbrii/textobj-word-column.vim" -- Word column textobj - ac/ic
     use "b4winckler/vim-angry" -- Argument textobj - aa/ia
     use "michaeljsmith/vim-indent-object" -- Indent textobj ii/ai
-    use "nelstrom/vim-textobj-rubyblock" -- Convenience textobj for ruby blocks ar/ir
+    use "tek/vim-textobj-ruby" -- Ruby function and class textobj
 
     use "christoomey/vim-sort-motion" -- Sort motion
     use "tpope/vim-commentary" -- Comment motion
-    use { "AckslD/nvim-revJ.lua", requires = { "sgur/vim-textobj-parameter" } } -- Reverse join
+    use "AckslD/nvim-trevJ.lua" -- Reverse join (based on treesitter symbols)
     use "RRethy/nvim-treesitter-endwise" -- Endwise for treesitter
     use "andymass/vim-matchup" -- Matchup for treesitter
     use({ "kylechui/nvim-surround", tag = "*" }) -- Modern implementation of vim-surround

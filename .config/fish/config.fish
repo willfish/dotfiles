@@ -19,6 +19,7 @@ abbr --add tg 'terragrunt'
 abbr --add v 'nvim'
 abbr --add vim 'nvim'
 abbr --add vimdiff 'nvim -d'
+abbr --add y 'yadm'
 
 abbr --add hm '~/Repositories/hmrc'
 abbr --add admin '~/Repositories/hmrc/trade-tariff-admin'
