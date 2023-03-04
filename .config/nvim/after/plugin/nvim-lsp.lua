@@ -34,6 +34,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set("n", "gn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "<leader>ga", vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set("v", "<leader>ga", vim.lsp.buf.code_action, bufopts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
     vim.keymap.set(
         "n",
@@ -131,6 +132,7 @@ require("lsp-setup").setup(
                     }
                 }
             },
+            ["clangd"] = {}
         }
     }
 )
