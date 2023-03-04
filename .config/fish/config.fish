@@ -11,7 +11,6 @@ abbr --add gco 'git checkout'
 abbr --add la 'exa --git --links --all --long'
 abbr --add ll 'exa -l --git --links'
 abbr --add mux 'tmuxinator'
-abbr --add ny '~/.config/nyxt'
 abbr --add rc 'bundle exec rails c'
 abbr --add rs 'bundle exec rails s'
 abbr --add t 'bundle exec rspec'
@@ -20,6 +19,8 @@ abbr --add v 'nvim'
 abbr --add vim 'nvim'
 abbr --add vimdiff 'nvim -d'
 abbr --add y 'yadm'
+abbr --add pythons "asdf list-all python | grep --color=never -P '^\d{1,2}.\d{1,2}.\d{1,2}'"
+abbr --add rubies "asdf list-all ruby | grep --color=never -P '^\d{1,2}.\d{1,2}.\d{1,2}'"
 
 abbr --add hm '~/Repositories/hmrc'
 abbr --add admin '~/Repositories/hmrc/trade-tariff-admin'
