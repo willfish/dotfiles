@@ -28,6 +28,8 @@ require("telescope").load_extension("gh")
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("live_grep_args")
 require("telescope").load_extension("noice")
+require("telescope").load_extension("lazy")
+require("telescope").load_extension('frecency')
 
 local rg_args = "{find_command = {'rg', '--files', '--hidden', '--follow', '--glob', '!.git', '--glob', '!.svn', '--glob', '!.hg', '--glob', '!.bzr', '--glob', '!.tmp', '--glob', '!.DS_Store', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.git', '--glob', '!temp_dirs'}}"
 
@@ -54,6 +56,13 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
     "n",
+    "<C-space>",
+    ":lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>",
+    default_map_opts
+)
+
+vim.api.nvim_set_keymap(
+    "n",
     "<Leader>fp",
     ":lua require('telescope').extensions.gh.pull_request()<CR>",
     default_map_opts
@@ -66,5 +75,11 @@ vim.api.nvim_set_keymap(
     default_map_opts
 )
 
+vim.api.nvim_set_keymap(
+    "n",
+    "<Leader>fl",
+    ":lua require('telescope').extensions.lazy.lazy()<CR>",
+    default_map_opts
+)
 
 vim.api.nvim_set_keymap("n", "<C-t>", ":Telescope<CR>", default_map_opts)

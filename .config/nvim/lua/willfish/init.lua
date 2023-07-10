@@ -1,5 +1,5 @@
-require("willfish.opts") -- Global, Window and Buffer configuration options
-require("willfish.maps") -- Normal, Insert, Visual, Terminal mode mappings
+require("willfish.opts")     -- Global, Window and Buffer configuration options
+require("willfish.maps")     -- Normal, Insert, Visual, Terminal mode mappings
 require("willfish.autocmds") -- Autocmds
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -18,13 +18,18 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   "folke/tokyonight.nvim",
+  "nyoom-engineering/oxocarbon.nvim",
+  "xiyaowong/transparent.nvim",
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-github.nvim",
       "nvim-telescope/telescope-fzy-native.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
+      "nvim-telescope/telescope-frecency.nvim",
       "nvim-lua/plenary.nvim",
+      "tsakirist/telescope-lazy.nvim",
+      "kkharji/sqlite.lua"
     }
   },
   {
@@ -61,7 +66,6 @@ require("lazy").setup({
       "jose-elias-alvarez/null-ls.nvim",
     }
   },
-
   {
     "folke/noice.nvim",
     dependencies = {
@@ -90,7 +94,7 @@ require("lazy").setup({
   { "tek/vim-textobj-ruby",            dependencies = "kana/vim-textobj-user" },
   "christoomey/vim-sort-motion",
   "tpope/vim-commentary",
-  "AckslD/nvim-trevJ.lua",
+  -- "AckslD/nvim-trevJ.lua",
   "RRethy/nvim-treesitter-endwise",
   "andymass/vim-matchup",
   "kylechui/nvim-surround",
@@ -103,14 +107,11 @@ require("lazy").setup({
   "christoomey/vim-tmux-navigator",
   "vim-test/vim-test",
   "nvim-treesitter/playground",
-  {
-    "jackMort/ChatGPT.nvim",
-    dependendencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-telescope/telescope.nvim",
-    }
-  },
+  -- { "ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim", } },
+  'Wansmer/treesj',
+  keys = { '<leader>j', '<leader>J' },
+  dependencies = { 'nvim-treesitter/nvim-treesitter' },
 })
+
 
 -- require("willfish.plugins") -- Pack plugins

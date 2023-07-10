@@ -66,7 +66,11 @@ function M.create_augroups_and_aucmds()
                             )
                         end
 
-                        vim.api.nvim_command("colorscheme tokyonight")
+                        -- vim.opt.background = "dark"
+                        vim.cmd.colorscheme "tokyonight-storm"
+                        -- Set transparent background for non-active buffer
+                        vim.cmd [[autocmd VimEnter * highlight NormalNC guibg=NONE]]
+                        vim.cmd [[autocmd VimEnter * highlight SignColumn guibg=NONE]]
                     end
                 )
             end,
