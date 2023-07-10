@@ -9,7 +9,7 @@ services:
       - hmrc-redis:/data
   hmrc-postgres:
     container_name: postgres
-    image: postgres:10
+    image: postgres:13.10
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
       - POSTGRES_USER=william
@@ -19,20 +19,20 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - hmrc-postgres-10:/var/lib/postgresql/data
-  hmrc-mysql:
-    container_name: hmrc-mysql
-    image: mysql:8.0.30
-    environment:
-      - MYSQL_DATABASE=signonotron2_development
-      - MYSQL_USER=signonotron2
-      - MYSQL_PASSWORD=signonotron2
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
-    ports:
-      - 3306:3306
-    volumes:
-      - hmrc-mysql-8:/var/lib/mysql
+      - hmrc-postgres-13:/var/lib/postgresql/data
+  # hmrc-mysql:
+  #   container_name: hmrc-mysql
+  #   image: mysql:8.0.30
+  #   environment:
+  #     - MYSQL_DATABASE=signonotron2_development
+  #     - MYSQL_USER=signonotron2
+  #     - MYSQL_PASSWORD=signonotron2
+  #     - MYSQL_ROOT_PASSWORD=
+  #     - MYSQL_ALLOW_EMPTY_PASSWORD=true
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - hmrc-mysql-8:/var/lib/mysql
   hmrc-opensearch:
     container_name: hmrc-opensearch
     image: opensearchproject/opensearch:2
@@ -42,7 +42,7 @@ services:
     environment:
         - bootstrap.memory_lock=true
         - discovery.type=single-node
-        - "OPENSEARCH_JAVA_OPTS=-Xms2g -Xmx2g"
+        - "OPENSEARCH_JAVA_OPTS=-Xms8g -Xmx8g"
         - cluster.routing.allocation.disk.threshold_enabled=false
         - plugins.security.disabled=true
     ulimits:
@@ -59,6 +59,7 @@ services:
     volumes:
     - hmrc-es:/usr/share/opensearch/data
     - /home/william/Repositories/hmrc/trade-tariff-backend/config/opensearch/synonyms_all.txt:/usr/share/opensearch/config/synonyms_all.txt
+    - /home/william/Repositories/hmrc/trade-tariff-backend/config/opensearch/stemming_exclusions_all.txt:/usr/share/opensearch/config/stemming_exclusions_all.txt
   # hmrc-kibana:
   #   container_name: hmrc-kibana
   #   image: kibana:7.9.3
@@ -74,6 +75,8 @@ volumes:
   hmrc-redis:
     driver: local
   hmrc-postgres-10:
+    driver: local
+  hmrc-postgres-13:
     driver: local
   hmrc-mysql-8:
     driver: local
