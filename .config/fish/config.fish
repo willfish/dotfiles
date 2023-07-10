@@ -13,6 +13,7 @@ abbr --add ll 'exa -l --git --links'
 abbr --add mux 'tmuxinator'
 abbr --add rc 'bundle exec rails c'
 abbr --add rs 'bundle exec rails s'
+abbr --add sk 'bundle exec sidekiq'
 abbr --add t 'bundle exec rspec'
 abbr --add tg 'terragrunt'
 abbr --add v 'nvim'
@@ -21,6 +22,10 @@ abbr --add vimdiff 'nvim -d'
 abbr --add y 'yadm'
 abbr --add pythons "asdf list-all python | grep --color=never -P '^\d{1,2}.\d{1,2}.\d{1,2}'"
 abbr --add rubies "asdf list-all ruby | grep --color=never -P '^\d{1,2}.\d{1,2}.\d{1,2}'"
+abbr --add cdhtg "cd ~/Repositories/hmrc/trade-tariff-platform-terragrunt"
+abbr --add cdhtm "cd ~/Repositories/hmrc/trade-tariff-platform-terraform-modules"
+abbr --add tap "terragrunt run-all plan"
+abbr --add taa "terragrunt run-all apply"
 
 abbr --add hm '~/Repositories/hmrc'
 abbr --add admin '~/Repositories/hmrc/trade-tariff-admin'
@@ -72,7 +77,6 @@ set -gx SAM_CLI_TELEMETRY 0
 set -gx MANPAGER 'nvim +Man!'
 set -gx PKG_CONFIG_PATH /usr/lib/x86_64-linux-gnu/pkgconfig
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
-set -gx GIT_TERMINAL_PROMPT 1
 set -gx RUBYOPT "--enable-yjit"
 
 if [ (uname) = "Darwin" ]
@@ -420,7 +424,7 @@ end
 function flask_up -d 'Loads a flask environment and app'
   set -gx FLASK_APP flaskr
   set -gx FLASK_ENV development
-  source dev/bin/activate.fish
+  source venv/bin/activate.fish
   source .env.development
   flask run
   deactivate
@@ -464,3 +468,5 @@ set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
 set -g fish_pager_color_selected_background --background=$selection
+
+jump shell fish | source
