@@ -31,10 +31,6 @@
   ui = auto
 [github]
   user = willfish
-
-# Enforce SSH
-; [url "git@github.com:"]
-; 	insteadOf = https://github.com/
 [web]
 	browser = firefox
 [init]
