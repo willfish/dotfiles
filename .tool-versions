@@ -19,3 +19,5 @@ iam-policy-json-to-terraform 1.8.1
 scala 2.13.4
 starship 1.13.1
 tflint 0.45.0
+tfsec 1.28.1
+go-jira 0.1.14
