@@ -45,17 +45,19 @@ local on_attach = function(client, bufnr)
         bufopts
     )
 end
+
 require("nvim-lsp-installer").setup {}
+
 require('neodev').setup({
-    lspconfig = {
-        settings = {
-            Lua = {
-                format = {
-                    enable = true,
-                }
-            }
-        }
-    }
+    library = {
+        enabled = true,
+        runtime = true,
+        types = true,
+        plugins = true,
+    },
+    setup_jsonls = true,
+    lspconfig = true,
+    pathStrict = true,
 })
 
 require("lsp-setup").setup(
@@ -132,7 +134,9 @@ require("lsp-setup").setup(
                     }
                 }
             },
-            ["clangd"] = {}
+            ["clangd"] = {},
+            ["awk_ls"] = {},
+            ["marksman"] = {},
         }
     }
 )

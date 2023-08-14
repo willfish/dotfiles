@@ -1,4 +1,4 @@
-local default_opts = {noremap = true, silent = true}
+local default_opts = { noremap = true, silent = true }
 
 local init_vim = "~/.config/nvim/init.lua"
 local init_lua = "~/.config/nvim/lua/willfish/init.lua"
@@ -10,7 +10,6 @@ local plugins = "~/.config/nvim/lua/willfish/plugins.lua"
 local fish_config = "~/.config/fish/config.fish"
 local i3_config = "~/.i3/config"
 local tmux_config = "~/.tmux.conf"
-local nyxt_config = "~/.config/nyxt/config.lisp"
 
 -- xrandr --output DP-1-2 --auto --primary --rotate normal --output eDP-1 --preferred --rotate normal --below DP-2
 
@@ -19,7 +18,6 @@ local nyxt_config = "~/.config/nyxt/config.lisp"
 vim.api.nvim_set_keymap("n", "<Leader>ef", ":edit" .. fish_config .. "<CR>", default_opts)
 vim.api.nvim_set_keymap("n", "<Leader>ei", ":edit" .. i3_config .. "<CR>", default_opts)
 vim.api.nvim_set_keymap("n", "<Leader>et", ":edit" .. tmux_config .. "<CR>", default_opts)
-vim.api.nvim_set_keymap("n", "<Leader>en", ":edit" .. nyxt_config .. "<CR>", default_opts)
 
 vim.api.nvim_set_keymap("n", "<Leader>ev", ":edit" .. init_vim .. "<CR>", default_opts)
 vim.api.nvim_set_keymap("n", "<Leader>evi", ":edit" .. init_lua .. "<CR>", default_opts)
@@ -58,6 +56,7 @@ vim.api.nvim_set_keymap("n", "<Leader>/", ":!%:p<CR>", default_opts)
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", default_opts)
 vim.api.nvim_set_keymap("i", "kj", "<Esc>", default_opts)
 --
+
 -- Terminal mode maps
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", default_opts)
 vim.api.nvim_set_keymap("t", "jj", "<C-\\><C-n>", default_opts)

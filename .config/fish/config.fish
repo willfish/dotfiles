@@ -44,6 +44,9 @@ abbr --add cdp '~/Repositories/pomegranate/prognostic-engine'
 abbr --add cdtc '~/Repositories/pomegranate/terraform-config'
 abbr --add cdtm '~/Repositories/pomegranate/terraform-modules'
 
+abbr --add gr 'go run'
+abbr --add gb 'go build'
+
 function prepend_to_path
   if test -d $argv[1]
     if not contains $argv[1] $PATH
@@ -78,6 +81,7 @@ set -gx MANPAGER 'nvim +Man!'
 set -gx PKG_CONFIG_PATH /usr/lib/x86_64-linux-gnu/pkgconfig
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 set -gx RUBYOPT "--enable-yjit"
+set -gx PAGER ' less --raw-control-chars -F -X'
 
 if [ (uname) = "Darwin" ]
 else

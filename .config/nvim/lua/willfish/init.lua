@@ -18,18 +18,20 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   "folke/tokyonight.nvim",
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+  },
   "nyoom-engineering/oxocarbon.nvim",
-  "xiyaowong/transparent.nvim",
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-github.nvim",
       "nvim-telescope/telescope-fzy-native.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
-      "nvim-telescope/telescope-frecency.nvim",
       "nvim-lua/plenary.nvim",
       "tsakirist/telescope-lazy.nvim",
-      "kkharji/sqlite.lua"
     }
   },
   {
@@ -87,6 +89,7 @@ require("lazy").setup({
   "sheerun/vim-polyglot",
   "junegunn/vim-easy-align",
   "RRethy/nvim-treesitter-textsubjects",
+  "RRethy/nvim-treesitter-endwise",
   { "kana/vim-textobj-line",           dependencies = "kana/vim-textobj-user" },
   { "whatyouhide/vim-textobj-xmlattr", dependencies = "kana/vim-textobj-user" },
   { "b4winckler/vim-angry",            dependencies = "kana/vim-textobj-user" },
@@ -94,8 +97,6 @@ require("lazy").setup({
   { "tek/vim-textobj-ruby",            dependencies = "kana/vim-textobj-user" },
   "christoomey/vim-sort-motion",
   "tpope/vim-commentary",
-  -- "AckslD/nvim-trevJ.lua",
-  "RRethy/nvim-treesitter-endwise",
   "andymass/vim-matchup",
   "kylechui/nvim-surround",
   "tpope/vim-dispatch",
@@ -107,11 +108,8 @@ require("lazy").setup({
   "christoomey/vim-tmux-navigator",
   "vim-test/vim-test",
   "nvim-treesitter/playground",
-  -- { "ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim", } },
   'Wansmer/treesj',
+  'norcalli/nvim-colorizer.lua',
   keys = { '<leader>j', '<leader>J' },
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
 })
-
-
--- require("willfish.plugins") -- Pack plugins

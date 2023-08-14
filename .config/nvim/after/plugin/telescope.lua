@@ -1,8 +1,8 @@
-local default_map_opts = {noremap = true, silent = true}
+local default_map_opts = { noremap = true, silent = true }
 
 require("telescope").setup {
     defaults = {
-        file_ignore_patterns = {"node_modules", "package-lock.json"},
+        file_ignore_patterns = { "node_modules", "package-lock.json" },
         file_sorter = require("telescope.sorters").get_fzy_sorter,
         prompt_prefix = " > ",
         color_devicons = true,
@@ -29,9 +29,9 @@ require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("live_grep_args")
 require("telescope").load_extension("noice")
 require("telescope").load_extension("lazy")
-require("telescope").load_extension('frecency')
 
-local rg_args = "{find_command = {'rg', '--files', '--hidden', '--follow', '--glob', '!.git', '--glob', '!.svn', '--glob', '!.hg', '--glob', '!.bzr', '--glob', '!.tmp', '--glob', '!.DS_Store', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!.gitignore', '--glob', '!.git', '--glob', '!temp_dirs'}}"
+local rg_args =
+"{find_command = {'rg', '--files', '--hidden', '--follow', '--glob', '!.git', '--glob', '!.svn', '--glob', '!.hg', '--glob', '!.bzr', '--glob', '!.tmp', '--glob', '!.DS_Store', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!temp_dirs'}}"
 
 vim.api.nvim_set_keymap(
     "n",
@@ -51,13 +51,6 @@ vim.api.nvim_set_keymap(
     "n",
     "<C-b>",
     ":lua require('telescope.builtin').buffers({sort_lastused = true})<CR>",
-    default_map_opts
-)
-
-vim.api.nvim_set_keymap(
-    "n",
-    "<C-space>",
-    ":lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>",
     default_map_opts
 )
 
