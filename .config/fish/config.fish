@@ -473,4 +473,4 @@ set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
 set -g fish_pager_color_selected_background --background=$selection
 
-jump shell fish | source
+fzf_configure_bindings --directory=\cf --git_log=\co --git_status=\cs
