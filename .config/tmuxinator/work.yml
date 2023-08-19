@@ -1,0 +1,28 @@
+# /home/william/.config/tmuxinator/backend.yml
+
+name: work
+windows:
+  - front:
+      root: "/home/william/Repositories/hmrc/trade-tariff-frontend"
+      panes:
+        - nvim
+  - back:
+      root: "/home/william/Repositories/hmrc/trade-tariff-backend"
+      panes:
+        - nvim
+  - 🤖:
+      layout: even-vertical
+      panes:
+        - cd /home/william/Repositories/hmrc/trade-tariff-frontend && bundle && bundle exec rails s
+        - cd /home/william/Repositories/hmrc/trade-tariff-backend && bundle && bundle exec rails s
+        - cd /home/william/Repositories/hmrc/trade-tariff-duty-calculator && bundle && bundle exec rails s
+        - cd /home/william/Repositories/hmrc/trade-tariff-search-query-parser && pip install -r requirements/dev.txt && flask_up
+        - cd /home/william/Repositories/hmrc/trade-tariff-admin && bundle && rails s
+  - 🐋:
+      root: ~/
+      panes:
+        - docker-compose up
+  - 💬:
+      root: ~/
+      panes:
+        - weechat
