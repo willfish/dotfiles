@@ -68,13 +68,6 @@ require("lazy").setup({
       "jose-elias-alvarez/null-ls.nvim",
     }
   },
-  {
-    "folke/noice.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify"
-    }
-  },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
   {
@@ -90,11 +83,15 @@ require("lazy").setup({
   "junegunn/vim-easy-align",
   "RRethy/nvim-treesitter-textsubjects",
   "RRethy/nvim-treesitter-endwise",
+  { "whatyouhide/vim-textobj-erb",     dependencies = "kana/vim-textobj-user" },
   { "kana/vim-textobj-line",           dependencies = "kana/vim-textobj-user" },
   { "whatyouhide/vim-textobj-xmlattr", dependencies = "kana/vim-textobj-user" },
   { "b4winckler/vim-angry",            dependencies = "kana/vim-textobj-user" },
   { "michaeljsmith/vim-indent-object", dependencies = "kana/vim-textobj-user" },
   { "tek/vim-textobj-ruby",            dependencies = "kana/vim-textobj-user" },
+  { "vimtaku/vim-textobj-keyvalue",    dependencies = "kana/vim-textobj-user" },
+  { "spacewander/vim-textobj-lua",     dependencies = "kana/vim-textobj-user" },
+  { "bps/vim-textobj-python",          dependencies = "kana/vim-textobj-user" },
   "christoomey/vim-sort-motion",
   "tpope/vim-commentary",
   "andymass/vim-matchup",
