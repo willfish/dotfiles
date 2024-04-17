@@ -1,0 +1,236 @@
+[colors.bright]
+black = "0x444b6a"
+blue = "0x7da6ff"
+cyan = "0x0db9d7"
+green = "0xb9f27c"
+magenta = "0xbb9af7"
+red = "0xff7a93"
+white = "0xacb0d0"
+yellow = "0xff9e64"
+
+[colors.normal]
+black = "0x32344a"
+blue = "0x7aa2f7"
+cyan = "0x449dab"
+green = "0x9ece6a"
+magenta = "0xad8ee6"
+red = "0xf7768e"
+white = "0x9699a8"
+yellow = "0xe0af68"
+
+[colors.primary]
+background = "0x24283b"
+foreground = "0xa9b1d6"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12
+
+[font.bold]
+style = "Bold"
+
+[font.italic]
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+style = "Regular"
+
+[[keyboard.bindings]]
+chars = "\u001B[13;2u"
+key = "Return"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B[13;5u"
+key = "Return"
+mods = "Control"
+
+# [[schemes.indexed_colors]]
+# color = "0xff966c"
+# index = 16
+
+# [[schemes.indexed_colors]]
+# color = "0xc53b53"
+# index = 17
+
+# [schemes.gruvbox.bright]
+# black = "#928374"
+# blue = "#83a598"
+# cyan = "#8ec07c"
+# green = "#b8bb26"
+# magenta = "#d3869b"
+# red = "#fb4934"
+# white = "#ebdbb2"
+# yellow = "#fabd2f"
+
+# [schemes.gruvbox.cursor]
+# cursor = "CellForeground"
+# text = "CellBackground"
+
+# [schemes.gruvbox.dim]
+# black = "#32302f"
+# blue = "#076678"
+# cyan = "#427b58"
+# green = "#79740e"
+# magenta = "#8f3f71"
+# red = "#9d0006"
+# white = "#928374"
+# yellow = "#b57614"
+
+# [schemes.gruvbox.normal]
+# black = "#282828"
+# blue = "#458588"
+# cyan = "#689d6a"
+# green = "#98971a"
+# magenta = "#b16286"
+# red = "#cc241d"
+# white = "#a89984"
+# yellow = "#d79921"
+
+# [schemes.gruvbox.primary]
+# background = "#282828"
+# bright_foreground = "#f9f5d7"
+# dim_foreground = "#f2e5bc"
+# foreground = "#fbf1c7"
+
+# [schemes.gruvbox.selection]
+# background = "CellForeground"
+# text = "CellBackground"
+
+# [schemes.gruvbox.vi_mode_cursor]
+# cursor = "CellForeground"
+# text = "CellBackground"
+
+# [schemes.tokyo-night.bright]
+# black = "0x444b6a"
+# blue = "0x7da6ff"
+# cyan = "0x0db9d7"
+# green = "0xb9f27c"
+# magenta = "0xbb9af7"
+# red = "0xff7a93"
+# white = "0xacb0d0"
+# yellow = "0xff9e64"
+
+# [schemes.tokyo-night.normal]
+# black = "0x32344a"
+# blue = "0x7aa2f7"
+# cyan = "0x449dab"
+# green = "0x9ece6a"
+# magenta = "0xad8ee6"
+# red = "0xf7768e"
+# white = "0x787c99"
+# yellow = "0xe0af68"
+
+# [schemes.tokyo-night.primary]
+# background = "0x1a1b26"
+# foreground = "0xa9b1d6"
+
+# [[schemes.tokyo-night-day.indexed_colors]]
+# color = "0xb15c00"
+# index = 16
+
+# [[schemes.tokyo-night-day.indexed_colors]]
+# color = "0xc64343"
+# index = 17
+
+# [schemes.tokyo-night-day.bright]
+# black = "0xa1a6c5"
+# blue = "0x2e7de9"
+# cyan = "0x007197"
+# green = "0x587539"
+# magenta = "0x9854f1"
+# red = "0xf52a65"
+# white = "0x3760bf"
+# yellow = "0x8c6c3e"
+
+# [schemes.tokyo-night-day.normal]
+# black = "0xe9e9ed"
+# blue = "0x2e7de9"
+# cyan = "0x007197"
+# green = "0x587539"
+# magenta = "0x9854f1"
+# red = "0xf52a65"
+# white = "0x6172b0"
+# yellow = "0x8c6c3e"
+
+# [schemes.tokyo-night-day.primary]
+# background = "0xe1e2e7"
+# foreground = "0x3760bf"
+
+# [schemes.tokyo-night-moon.bright]
+# black = "0x444a73"
+# blue = "0x82aaff"
+# cyan = "0x86e1fc"
+# green = "0xc3e88d"
+# magenta = "0xc099ff"
+# red = "0xff757f"
+# white = "0xc8d3f5"
+# yellow = "0xffc777"
+
+# [schemes.tokyo-night-moon.normal]
+# black = "0x1b1d2b"
+# blue = "0x82aaff"
+# cyan = "0x86e1fc"
+# green = "0xc3e88d"
+# magenta = "0xc099ff"
+# red = "0xff757f"
+# white = "0x828bb8"
+# yellow = "0xffc777"
+
+# [schemes.tokyo-night-moon.primary]
+# background = "0x222436"
+# foreground = "0xc8d3f5"
+
+# [schemes.tokyo-night-night.bright]
+# black = "0x414868"
+# blue = "0x7aa2f7"
+# cyan = "0x7dcfff"
+# green = "0x9ece6a"
+# magenta = "0xbb9af7"
+# red = "0xf7768e"
+# white = "0xc0caf5"
+# yellow = "0xe0af68"
+
+# [schemes.tokyo-night-night.normal]
+# black = "0x15161e"
+# blue = "0x7aa2f7"
+# cyan = "0x7dcfff"
+# green = "0x9ece6a"
+# magenta = "0xbb9af7"
+# red = "0xf7768e"
+# white = "0xa9b1d6"
+# yellow = "0xe0af68"
+
+# [schemes.tokyo-night-night.primary]
+# background = "0x1a1b26"
+# foreground = "0xc0caf5"
+
+# [schemes.tokyo-night-storm.bright]
+# black = "0x444b6a"
+# blue = "0x7da6ff"
+# cyan = "0x0db9d7"
+# green = "0xb9f27c"
+# magenta = "0xbb9af7"
+# red = "0xff7a93"
+# white = "0xacb0d0"
+# yellow = "0xff9e64"
+
+# [schemes.tokyo-night-storm.normal]
+# black = "0x32344a"
+# blue = "0x7aa2f7"
+# cyan = "0x449dab"
+# green = "0x9ece6a"
+# magenta = "0xad8ee6"
+# red = "0xf7768e"
+# white = "0x9699a8"
+# yellow = "0xe0af68"
+
+# [schemes.tokyo-night-storm.primary]
+# background = "0x24283b"
+# foreground = "0xa9b1d6"
+
+[window]
+opacity = 0.8
