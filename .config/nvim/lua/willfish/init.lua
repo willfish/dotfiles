@@ -3,6 +3,7 @@ require("willfish.maps")     -- Normal, Insert, Visual, Terminal mode mappings
 require("willfish.autocmds") -- Autocmds
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -17,13 +18,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  "folke/tokyonight.nvim",
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-  },
-  "nyoom-engineering/oxocarbon.nvim",
+  "rose-pine/neovim",
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -90,7 +85,6 @@ require("lazy").setup({
   { "michaeljsmith/vim-indent-object", dependencies = "kana/vim-textobj-user" },
   { "tek/vim-textobj-ruby",            dependencies = "kana/vim-textobj-user" },
   { "vimtaku/vim-textobj-keyvalue",    dependencies = "kana/vim-textobj-user" },
-  { "spacewander/vim-textobj-lua",     dependencies = "kana/vim-textobj-user" },
   { "bps/vim-textobj-python",          dependencies = "kana/vim-textobj-user" },
   "christoomey/vim-sort-motion",
   "tpope/vim-commentary",
@@ -107,6 +101,13 @@ require("lazy").setup({
   "nvim-treesitter/playground",
   'Wansmer/treesj',
   'norcalli/nvim-colorizer.lua',
+  'Eandrju/cellular-automaton.nvim',
+  'fatih/vim-go',
+  'xiyaowong/nvim-cursorword',
+  'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+  'fadein/vim-FIGlet',
+  'sotte/presenting.vim',
+  'xiyaowong/telescope-emoji.nvim',
   keys = { '<leader>j', '<leader>J' },
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
 })

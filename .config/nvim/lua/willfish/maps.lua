@@ -77,6 +77,20 @@ vim.api.nvim_set_keymap("x", "s*", '"sy:let @/=@s<CR>cgn', default_opts)
 vim.api.nvim_set_keymap("x", "<leader>d", 'c<c-r>=system(\'base64 --decode\', @")<cr><esc>', default_opts)
 vim.api.nvim_set_keymap("x", "<leader>e", 'c<c-r>=system(\'base64\', @")<cr><esc>', default_opts)
 
+function insertJiraTicketNumber()
+    local command = "git branch --show-current | sed -E 's/((HOTT|FPO|BAU)-[0-9]+)-(.+)/\\1: /'"
+    local handle = io.popen(command)
+    local result = handle:read("*a")
+
+    handle:close()
+
+    result = result:gsub("\n$", "")
+
+    vim.api.nvim_put({ result }, 'c', true, true)
+end
+
+vim.api.nvim_set_keymap('n', '<leader>p', '<cmd>lua insertJiraTicketNumber()<CR>', default_opts)
+
 vim.api.nvim_set_keymap("n", "<Leader>wn", ":lua os.execute('/usr/bin/variety -n > /dev/null 2>&1')<CR>", default_opts)
 vim.api.nvim_set_keymap("n", "<Leader>wp", ":lua os.execute('/usr/bin/variety -p > /dev/null 2>&1')<CR>", default_opts)
 vim.api.nvim_set_keymap("n", "<Leader>m", ":Make<CR>", default_opts)

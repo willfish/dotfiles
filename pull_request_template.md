@@ -1,17 +1,15 @@
+### Jira link
+
+BAU
+
 ### What?
 
 I have added/removed/altered:
 
-- [ ] Added ...
-- [ ] Removed ...
-- [ ] Altered ...
+- [x] Update base domain for production
 
 ### Why?
 
 I am doing this because:
 
--
--
--
-
-### AC
+- This is currently incorrect/pointing to the old test domain

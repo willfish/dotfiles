@@ -24,10 +24,22 @@ require("telescope").setup {
     }
 }
 
+require("telescope").setup {
+  extensions = {
+    emoji = {
+      action = function(emoji)
+        print(emoji.value)
+        vim.fn.setreg("+", emoji.value)
+        vim.api.nvim_put({ emoji.value }, 'c', false, true)
+      end,
+    }
+  },
+}
+
 require("telescope").load_extension("gh")
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("live_grep_args")
-require("telescope").load_extension("lazy")
+require("telescope").load_extension("emoji")
 
 local rg_args =
 "{find_command = {'rg', '--files', '--hidden', '--follow', '--glob', '!.git', '--glob', '!.svn', '--glob', '!.hg', '--glob', '!.bzr', '--glob', '!.tmp', '--glob', '!.DS_Store', '--glob', '!.gitignore', '--glob', '!.gitmodules', '--glob', '!.gitattributes', '--glob', '!.gitkeep', '--glob', '!.gitconfig', '--glob', '!temp_dirs'}}"
@@ -55,6 +67,13 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
     "n",
+    "<C-e>",
+    ":lua require('telescope').extensions.emoji.emoji()<CR>",
+    default_map_opts
+)
+
+vim.api.nvim_set_keymap(
+    "n",
     "<Leader>fp",
     ":lua require('telescope').extensions.gh.pull_request()<CR>",
     default_map_opts
@@ -62,16 +81,8 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
     "n",
-    "<Leader>fn",
-    ":lua require('telescope').extensions.noice.noice()<CR>",
+    "<Leader>fe",
+    ":lua require('telescope').extensions.gh.run()<CR>",
     default_map_opts
 )
-
-vim.api.nvim_set_keymap(
-    "n",
-    "<Leader>fl",
-    ":lua require('telescope').extensions.lazy.lazy()<CR>",
-    default_map_opts
-)
-
 vim.api.nvim_set_keymap("n", "<C-t>", ":Telescope<CR>", default_map_opts)

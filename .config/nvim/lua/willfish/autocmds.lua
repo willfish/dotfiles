@@ -67,10 +67,17 @@ function M.create_augroups_and_aucmds()
                         end
 
                         -- vim.opt.background = "dark"
-                        vim.cmd.colorscheme "catppuccin-mocha"
+                        vim.cmd.colorscheme "rose-pine-main"
                         -- Set transparent background for non-active buffer
-                        vim.cmd [[autocmd VimEnter * highlight NormalNC guibg=NONE]]
-                        vim.cmd [[autocmd VimEnter * highlight SignColumn guibg=NONE]]
+                        -- highlight Normal guibg=none
+                        -- highlight NonText guibg=none
+                        -- highlight Normal ctermbg=none
+                        -- highlight NonText ctermbg=none
+                        vim.cmd [[highlight Normal guibg=NONE]]
+                        vim.cmd [[highlight NonText guibg=NONE]]
+                        vim.cmd [[highlight Normal ctermbg=NONE]]
+                        vim.cmd [[highlight NonText ctermbg=NONE]]
+                        vim.cmd [[highlight SignColumn guibg=NONE]]
                     end
                 )
             end,

@@ -10,6 +10,7 @@ vim.api.nvim_set_var(
 )
 
 vim.api.nvim_set_var("test#ruby#rspec#executable", "bundle exec rspec")
+vim.api.nvim_set_var("test#python#pytest#executable", "pytest")
 
 vim.api.nvim_set_keymap("n", "<Leader>x", ":TestNearest<CR>", default_map_opts)
 vim.api.nvim_set_keymap("n", "<Leader>t", ":TestFile<CR>", default_map_opts)

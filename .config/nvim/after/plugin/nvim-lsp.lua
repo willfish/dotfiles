@@ -112,12 +112,39 @@ require("lsp-setup").setup(
                     }
                 }
             },
-            ["lua_ls"] = {},
+            ["lua_ls"] = {
+                Lua = {
+                    runtime = {
+                        version = "LuaJIT",
+                        path = vim.split(package.path, ";"),
+                    },
+                    diagnostics = {
+                        globals = {
+                            "vim",
+                            "nnoremap",
+                            "vnoremap",
+                            "inoremap",
+                            "tnoremap",
+                            "use",
+                        },
+                    },
+                    workspace = {
+                        checkThirdParty = false,
+                        library = {
+                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                        },
+                    },
+                }
+            },
             ["tsserver"] = {
                 settings = {
                     ["typescript"] = {
                         format = {
                             enable = false
+                        },
+                        diagnostics = {
+                            ignoredCodes = { 6133, 6138, 6139, 6140 }
                         }
                     }
                 }

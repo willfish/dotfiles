@@ -2,27 +2,16 @@
 
 name: work
 windows:
-  - front:
-      root: "/home/william/Repositories/hmrc/trade-tariff-frontend"
-      panes:
-        - nvim
-  - back:
-      root: "/home/william/Repositories/hmrc/trade-tariff-backend"
-      panes:
-        - nvim
   - 🤖:
       layout: even-vertical
       panes:
-        - cd /home/william/Repositories/hmrc/trade-tariff-frontend && bundle && bundle exec rails s
-        - cd /home/william/Repositories/hmrc/trade-tariff-backend && bundle && bundle exec rails s
-        - cd /home/william/Repositories/hmrc/trade-tariff-duty-calculator && bundle && bundle exec rails s
+        - cd /home/william/Repositories/hmrc/trade-tariff-frontend && make
+        - cd /home/william/Repositories/hmrc/trade-tariff-backend && make
+        - cd /home/william/Repositories/hmrc/trade-tariff-duty-calculator && make
         - cd /home/william/Repositories/hmrc/trade-tariff-search-query-parser && pip install -r requirements/dev.txt && flask_up
         - cd /home/william/Repositories/hmrc/trade-tariff-admin && bundle && rails s
+        - cd /home/william/Repositories/hmrc/trade-tariff-dev-hub-backend && make localstack && make run
   - 🐋:
       root: ~/
       panes:
         - docker-compose up
-  - 💬:
-      root: ~/
-      panes:
-        - weechat

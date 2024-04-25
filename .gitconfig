@@ -1,43 +1,60 @@
+[core]
+  pager = delta
+  editor = nvim
+
 [user]
   name = William Fish
   email = william.michael.fish@gmail.com
+
 [push]
   default = simple
+
 [alias]
   add = git add -p
-  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+  branches = "for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes"
   cleanupmaster = !git fetch -p && git pull && git branch --merged | grep -v main | xargs -n 1 -r git branch -d
   cleanup = !git fetch -p && git pull && git branch --merged | grep -v main | xargs -n 1 -r git branch -d
   cmm = !git checkout master && git cleanupmaster
   cm = !git checkout main && git cleanup
-  diff = !git diff --relative .
-  dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
-  integrate = !git checkout master && git merge $1 && git push && git remove $1
-  loc = log --pretty=oneline --abbrev-commit --graph --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)'
-  lol = log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  lol2 = log --graph --decorate --pretty=oneline --abbrev-commit --color
-  sapply = "!f() { git stash apply stash^{/$*}; }; f"
-  sshow = "!f() { git stash show stash^{/$*} -p; }; f"
+
 [help]
   autocorrect=1
+
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
-[core]
-  editor = nvim
-[color]
-  ui = auto
+
+[delta]
+  navigate = true
+  light = false
+  features = line-numbers decorations
+  theme = Github
+
+[interactive]
+  diffFilter = delta --color-only
+
 [github]
   user = willfish
+
 [web]
 	browser = firefox
+
 [init]
 	defaultBranch = main
+
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default

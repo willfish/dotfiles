@@ -1,15 +1,15 @@
 nodejs 20.4.0
 ruby 3.2.2
 yarn 1.22.10
-shellcheck 0.4.6
-golang 1.19.3
+shellcheck 0.10.0
+golang 1.22.2
 lua 5.4.4
-terraform 0.14.3
+terraform 1.5.5
 terragrunt 0.40.2
-rust 1.68.2
+rust 1.74.0
 github-markdown-toc 1.0.0
 cf 7.3.0
-python 3.11.4
+python 3.11.6
 sbcl 2.2.10
 neovim ref:master
 java adoptopenjdk-openj9-11.0.11+9.openj9-0.26.0
@@ -21,3 +21,5 @@ starship 1.13.1
 tflint 0.45.0
 tfsec 1.28.1
 go-jira 0.1.14
+protoc-gen-go 1.31.0
+serverless 3.36.0
